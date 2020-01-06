@@ -3,7 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="testsSrc"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Kalinco-Desktop/OneDrive - Royal Holloway University of London/EclipseWorkspace/postgresql-42.2.9.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="C:/Users/Kalinco-Desktop/OneDrive - Royal Holloway University of London/EclipseWorkspace/CS2855-MiniProject/lib/postgresql-42.2.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
