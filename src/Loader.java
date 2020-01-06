@@ -3,19 +3,30 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A class for loading the contents of the TopURLs and mapping files.
+ * @author Arran Reedman
+ *
+ */
 public class Loader {
-  private String URL_PATH = "TopURLs";
-  private String MAPPING_PATH = "mapping";
+  private String urlPath = "TopURLs";
+  private String mappingPath = "mapping";
   
   private ArrayList<String[]> urls = new ArrayList<String[]>();
   private ArrayList<String[]> mappings = new ArrayList<String[]>();
   
-  public void loadURLs() {
-    urls = loadFile(URL_PATH);
+  /**
+   * Loads URLs into object.
+   */
+  public void loadUrls() {
+    urls = loadFile(urlPath);
   }
   
+  /**
+   * Loads mappings into object.
+   */
   public void loadMappings() {
-    mappings = loadFile(MAPPING_PATH);
+    mappings = loadFile(mappingPath);
   }
   
   private ArrayList<String[]> loadFile(String path) {
@@ -36,10 +47,18 @@ public class Loader {
     
   }
 
-  public ArrayList<String[]> getURLs() {
+  /**
+   * Gets URLs.
+   * @return urls
+   */
+  public ArrayList<String[]> getUrls() {
     return urls;
   }
   
+  /**
+   * Gets mappings.
+   * @return mappings
+   */
   public ArrayList<String[]> getMappings() {
     return mappings;
   }

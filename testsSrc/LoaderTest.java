@@ -19,28 +19,28 @@ class LoaderTest {
   @Test
   void test2() {
     loader = new Loader();
-    loader.loadURLs();
+    loader.loadUrls();
   }
   
   @Test
   void test3() {
     loader = new Loader();
-    loader.loadURLs();
-    assertEquals(loader.getURLs().get(0)[0],"1");
+    loader.loadUrls();
+    assertEquals(loader.getUrls().get(0)[0],"1");
   }
   
   @Test
   void test4() {
     loader = new Loader();
-    loader.loadURLs();
-    assertEquals(loader.getURLs().get(0)[1],"google");
+    loader.loadUrls();
+    assertEquals(loader.getUrls().get(0)[1],"google");
   }
   
   @Test
   void test5() {
     loader = new Loader();
-    loader.loadURLs();
-    assertEquals(loader.getURLs().get(12)[3],"cn");
+    loader.loadUrls();
+    assertEquals(loader.getUrls().get(12)[3],"cn");
   }
   
   @Test
