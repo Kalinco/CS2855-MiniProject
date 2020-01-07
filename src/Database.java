@@ -12,12 +12,12 @@ public class Database {
     this.url = url;
   }
   
-  public void login(String username, String password) {
+  public boolean login(String username, String password) {
     try {
       conn = DriverManager.getConnection(url, username, password);
+      return true;
     } catch (SQLException e) {
-      e.printStackTrace();
-      System.exit(0);
+      return false;
 
     }
   }

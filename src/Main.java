@@ -1,13 +1,40 @@
+import java.util.Scanner;
+
 public class Main {
   private static int queryNumber = 1;
   public static void main(String[] args) {
     Loader loader = new Loader();
+    Scanner scan = new Scanner(System.in);
     loader.loadUrls();
     loader.loadMappings();
-    Database db = new Database("jdbc:postgresql://localhost/CS2855");
-    db.login("test", "password");
+    Boolean debug = false;
+    Database db;
+    do {
+      System.out.println("Enter database to connect to (of format jdbc:postgresql://<url>)");
+      System.out.print("> ");
+      String database_address = scan.nextLine();
+      if (database_address.equals("debug")) {
+        debug = true;
+        db = new Database("jdbc:postgresql://localhost/CS2855");
+        db.login("test", "password");
+      }else {
+        System.out.println("Enter database username");
+        System.out.print("> ");
+        String username = scan.nextLine();
+        
+        System.out.println("Enter database password");
+        System.out.print("> ");
+        String password = scan.nextLine();
+        
+        db = new Database(database_address);
+        if (!db.login(username, password)) {
+          System.out.println("Connection failed to establish, please check and try again\n");
+        }
+      }
+    }while(!db.isConnected());
+    
     if(db.isConnected()) {
-      //setup(db, loader);
+      setup(db, loader);
       String[][] result = db.selectQuery("rankings.ranking,websites.domain,websites.sub_dot,dots.text",
           "websites,rankings,dots",
           "rankings.ws_id=websites.ws_id AND websites.last_dot=dots.dot_id AND rankings.ranking <= 10",
