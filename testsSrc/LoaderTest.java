@@ -26,34 +26,34 @@ class LoaderTest {
   void test3() {
     loader = new Loader();
     loader.loadUrls();
-    assertEquals(loader.getUrls().get(0)[0],"1");
+    assertEquals(loader.getUrls()[0][0],"1");
   }
   
   @Test
   void test4() {
     loader = new Loader();
     loader.loadUrls();
-    assertEquals(loader.getUrls().get(0)[1],"google");
+    assertEquals(loader.getUrls()[0][1],"google");
   }
   
   @Test
   void test5() {
     loader = new Loader();
     loader.loadUrls();
-    assertEquals(loader.getUrls().get(12)[3],"cn");
+    assertEquals(loader.getUrls()[12][3],"cn");
   }
   
   @Test
   void test6() {
     loader = new Loader();
     loader.loadMappings();
-    assertEquals(loader.getMappings().get(0)[0],"ac");
+    assertEquals(loader.getMappings()[0][0],"ac");
   }
 
   @Test
   void test7() {
     loader = new Loader();
     loader.loadMappings();
-    assertEquals(loader.getMappings().get(57)[0],"coop");
+    assertEquals(loader.getMappings()[57][0],"coop");
   }
 }

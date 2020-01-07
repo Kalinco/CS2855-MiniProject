@@ -51,16 +51,24 @@ public class Loader {
    * Gets URLs.
    * @return urls
    */
-  public ArrayList<String[]> getUrls() {
-    return urls;
+  public String[][] getUrls() {
+    String[][] result = new String[urls.size()][3];
+    for (int i = 0; i < urls.size(); i++) {
+      result[i] = urls.get(i);
+    }
+    return result;
   }
   
   /**
    * Gets mappings.
    * @return mappings
    */
-  public ArrayList<String[]> getMappings() {
-    return mappings;
+  public String[][] getMappings() {
+    String[][] result = new String[mappings.size()][2];
+    for (int i = 0; i < mappings.size(); i++) {
+      result[i] = mappings.get(i);
+    }
+    return result;
   }
 
 }

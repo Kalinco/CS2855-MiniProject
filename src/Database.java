@@ -74,14 +74,20 @@ public class Database {
         if (i != 0) {
           sql += ", ";
         }
-        sql += row[i];
+        if (row[i] == "null") {
+          sql += row[i];
+        }
+        else {
+          sql += "'" +row[i] + "'";
+        }
       }
       sql += ")";
-      //System.out.println(sql);
+      System.out.println(sql);
       st.executeUpdate(sql);
       st.close();
     } catch (SQLException e) {
       e.printStackTrace();
+      System.exit(0);
     }
   }
 
@@ -99,6 +105,7 @@ public class Database {
   
   private String[][] query(String sql) {
     try {
+      System.out.println(sql);
       Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
       if (st.execute(sql)) {
         String[][] result = processResultSet(st.getResultSet());

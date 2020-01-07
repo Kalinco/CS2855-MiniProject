@@ -49,7 +49,7 @@ class DatabaseTest {
     
     db.dropTable("test2");
     db.createTable("test2", headings);
-    String[] row = {"'test'"};
+    String[] row = {"test"};
     db.insertRow("test2", headers, row);
   }
   
@@ -66,7 +66,7 @@ class DatabaseTest {
     
     db.dropTable("test3");
     db.createTable("test3", headings);
-    String[][] rows = {{"'test'"},{"'test2'"},{"'test3'"}};
+    String[][] rows = {{"test"},{"test2"},{"test3"}};
     db.insertRows("test3", headers, rows);
     String[][] result = db.selectQuery("name", "test3", "id > 1", "");
     assertEquals(result[0][0],"test2");
