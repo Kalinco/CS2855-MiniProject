@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -76,14 +77,60 @@ public class Database {
         sql += row[i];
       }
       sql += ")";
-      System.out.println(sql);
-      st.execute(sql);
+      //System.out.println(sql);
+      st.executeUpdate(sql);
       st.close();
     } catch (SQLException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
-  
 
+  public void insertRows(String tableName, String[] headers, String[][] rows) {
+    for (int i = 0; i < rows.length; i++) {
+      insertRow(tableName, headers, rows[i]);
+    }
+  }
+  
+  public String[][] selectQuery(String select, String from, String where, String post){
+    String sql = "SELECT " + select + " FROM " + from + " WHERE " + where + " " + post;
+    return query(sql);
+    
+  }
+  
+  private String[][] query(String sql) {
+    try {
+      Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+      if (st.execute(sql)) {
+        String[][] result = processResultSet(st.getResultSet());
+        return result;
+      }else {
+        return null;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+  
+  private String[][] processResultSet(ResultSet rs) {
+    try {
+      int columns = rs.getMetaData().getColumnCount();
+      int rows = 0;
+      if (rs.last()) {
+        rows = rs.getRow();
+        rs.beforeFirst();
+      }
+      String[][] contents = new String[rows][columns];
+      for (int j = 1; rs.next() && j<=rows;j++) {
+        for (int i = 1; i <= columns; i++) {
+          contents[j-1][i-1] = rs.getString(i);
+        }
+      }
+      return contents;
+    }catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
+    
+  }
 }
