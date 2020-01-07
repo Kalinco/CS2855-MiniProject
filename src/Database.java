@@ -17,6 +17,8 @@ public class Database {
       conn = DriverManager.getConnection(url, username, password);
     } catch (SQLException e) {
       e.printStackTrace();
+      System.exit(0);
+
     }
   }
   
@@ -45,6 +47,8 @@ public class Database {
     } catch (SQLException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
+      System.exit(0);
+
     }
   }
 
@@ -55,6 +59,8 @@ public class Database {
       st.close();
     } catch (SQLException e) {
       e.printStackTrace();
+      System.exit(0);
+
     }
   }
 
@@ -82,7 +88,7 @@ public class Database {
         }
       }
       sql += ")";
-      System.out.println(sql);
+      //System.out.println(sql);
       st.executeUpdate(sql);
       st.close();
     } catch (SQLException e) {
@@ -105,7 +111,7 @@ public class Database {
   
   private String[][] query(String sql) {
     try {
-      System.out.println(sql);
+      //System.out.println(sql);
       Statement st = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
       if (st.execute(sql)) {
         String[][] result = processResultSet(st.getResultSet());
@@ -115,6 +121,7 @@ public class Database {
       }
     } catch (SQLException e) {
       e.printStackTrace();
+      System.exit(0);
     }
     return null;
   }
@@ -133,9 +140,11 @@ public class Database {
           contents[j-1][i-1] = rs.getString(i);
         }
       }
+      rs.close();
       return contents;
     }catch (SQLException e) {
       e.printStackTrace();
+      System.exit(0);
     }
     return null;
     
