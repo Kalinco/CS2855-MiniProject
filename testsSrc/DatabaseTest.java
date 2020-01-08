@@ -9,7 +9,7 @@ class DatabaseTest {
   private Database db;
   
   @BeforeEach
-  public void setUp(){
+  public void setUp() {
     db = new Database("jdbc:postgresql://localhost/CS2855");
   }
 
